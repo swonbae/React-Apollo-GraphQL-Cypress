@@ -21,10 +21,12 @@ function Team(props) {
 
   return (
     <div className="flex flex-col items-center">
-      <h2>{full_name}</h2>
-      <p>Conference: {conference}</p>
+      <h2 className="text-2xl">{full_name}</h2>
+      <p className="mt-2">Conference: {conference}</p>
       <p>Division: {division}</p>
-      <Link to="/">&larr;Back</Link>
+      <Link to="/" className="mt-8 font-bold">
+        &larr;Back
+      </Link>
     </div>
   );
 }

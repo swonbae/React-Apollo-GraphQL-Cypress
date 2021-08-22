@@ -24,8 +24,8 @@ function Games() {
     }
   `;
 
-  //   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
-  const [date, setDate] = useState(moment().format("2020-01-28"));
+  //   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));     // Today
+  const [date, setDate] = useState(moment().format("2021-01-18"));
 
   useEffect(() => {
     if (!date) setDate(moment().format("YYYY-MM-DD"));
@@ -41,33 +41,40 @@ function Games() {
     <div className="flex flex-col items-center">
       <label htmlFor="date">Show games for: </label>
       <input
-        className="border-2 border-gray-500 p-2"
+        className="border-2 border-gray-500 p-2 mt-1"
         type="date"
         id="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
         pattern="\d{4}-\d{2}-\d{2}"
       />
-      {data.allGames.map((game) => (
-        <div className="flex flex-col items-center" key={game.id}>
-          <p className="mt-4">
-            <Link to={`teams/${game.home_team.id}`}>
-              {game.home_team.full_name}
-            </Link>
-            {game.home_team_score !== 0 && (
-              <Fragment>: {game.home_team_score}</Fragment>
-            )}{" "}
-            vs.{" "}
-            <Link to={`teams/${game.visitor_team.id}`}>
-              {game.visitor_team.full_name}
-            </Link>
-            {game.visitor_team_score !== 0 && (
-              <Fragment>: {game.home_team_score}</Fragment>
-            )}
-          </p>
-          <p>{game.status}</p>
-        </div>
-      ))}
+      {data.allGames.length == 0 ? (
+        <div className="mt-4">No games found</div>
+      ) : (
+        data.allGames.map((game) => (
+          <div className="flex flex-col items-center" key={game.id}>
+            <p className="mt-4">
+              <Link to={`teams/${game.home_team.id}`} className="text-blue-500">
+                {game.home_team.full_name}
+              </Link>
+              {game.home_team_score !== 0 && (
+                <Fragment>: {game.home_team_score}</Fragment>
+              )}{" "}
+              vs.{" "}
+              <Link
+                to={`teams/${game.visitor_team.id}`}
+                className="text-red-500"
+              >
+                {game.visitor_team.full_name}
+              </Link>
+              {game.visitor_team_score !== 0 && (
+                <Fragment>: {game.home_team_score}</Fragment>
+              )}
+            </p>
+            <p>{game.status}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 }
