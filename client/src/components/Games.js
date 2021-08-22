@@ -48,10 +48,10 @@ function Games() {
         onChange={(e) => setDate(e.target.value)}
         pattern="\d{4}-\d{2}-\d{2}"
       />
-      {data.allGames.length == 0 ? (
+      {data?.allGames.length == 0 ? (
         <div className="mt-4">No games found</div>
       ) : (
-        data.allGames.map((game) => (
+        data?.allGames.map((game) => (
           <div className="flex flex-col items-center" key={game.id}>
             <p className="mt-4">
               <Link to={`teams/${game.home_team.id}`} className="text-blue-500">
