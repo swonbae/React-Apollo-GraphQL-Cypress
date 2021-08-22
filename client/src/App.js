@@ -3,6 +3,7 @@ import { ApolloProvider } from "react-apollo";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import logo from "./NBA20Secondary20Logo.jpg";
 import Games from "./components/Games";
+import Team from "./components/Team";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql",
@@ -11,10 +12,15 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <p className="font-bold text-red-700 text-3xl">Homepage</p>
-        <Games />
-      </div>
+      <Router>
+        <div className="flex flex-col justify-center items-center h-full">
+          <div className="flex justify-center mb-8 mt-8">
+            <img src={logo} alt="NBA logo" style={{ width: "240px" }} />
+          </div>
+          <Route exact path="/" component={Games} />
+          <Route exact path="/teams/:id" component={Team} />
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }

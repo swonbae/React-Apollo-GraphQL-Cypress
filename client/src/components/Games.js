@@ -51,11 +51,16 @@ function Games() {
       {data.allGames.map((game) => (
         <div className="flex flex-col items-center" key={game.id}>
           <p className="mt-4">
-            {game.home_team.full_name}
+            <Link to={`teams/${game.home_team.id}`}>
+              {game.home_team.full_name}
+            </Link>
             {game.home_team_score !== 0 && (
               <Fragment>: {game.home_team_score}</Fragment>
             )}{" "}
-            vs. {game.visitor_team.full_name}
+            vs.{" "}
+            <Link to={`teams/${game.visitor_team.id}`}>
+              {game.visitor_team.full_name}
+            </Link>
             {game.visitor_team_score !== 0 && (
               <Fragment>: {game.home_team_score}</Fragment>
             )}
