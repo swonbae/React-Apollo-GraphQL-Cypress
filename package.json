@@ -6,7 +6,9 @@
   "license": "personal use",
   "private": true,
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "yarn start --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "dependencies": {
     "axios": "^0.21.1",
